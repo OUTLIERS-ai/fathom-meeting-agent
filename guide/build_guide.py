@@ -57,7 +57,8 @@ CSS = """
        color:var(--brass); text-align:left; padding:1.8mm 2mm; border-bottom:.4mm solid var(--ink); }
   td { font-size:9.5pt; line-height:1.36; padding:1.7mm 2mm;
        border-bottom:.2mm solid rgba(20,17,12,.2); vertical-align:top; }
-  td.addr { font-family:Consolas,monospace; font-size:8.6pt; letter-spacing:-.01em; }
+  td.addr { font-family:Consolas,monospace; font-size:8.6pt; letter-spacing:-.01em;
+           white-space:nowrap; }
 """
 
 PAGES = []
@@ -205,9 +206,30 @@ page("getting one", """
      already made, after I got them wrong first in a business that was running. The agent in
      this guide was written inside it, so the folders it files into and the way people are named
      and linked are already there waiting for it.</p>
-  <p>The rest of the agents come with it. The one that reads books in, the one that runs the
-     weekly review, and a few others. This meeting agent is 1 of them, and it is the
-     smallest.</p>
+  <p>5 assistants come with it, and they are the reason the folder fills up without you
+     typing. Each one takes a different way in.</p>
+  <table>
+    <tr><th>Assistant</th><th>What arrives</th><th>What it gives you back</th></tr>
+    <tr><td class="addr">the-archivist</td><td>Documents</td>
+        <td>Contracts, reports, proposals, anything of length. Turns them into clean notes and
+            flags anything committing you to a future action, so a deadline on page 9 does not
+            stay buried</td></tr>
+    <tr><td class="addr">the-librarian</td><td>Books and courses</td>
+        <td>Captures ideas on the author's own terms, deliberately without bending them to fit
+            what you already believe, because that is how you lose the parts that disagree with
+            you</td></tr>
+    <tr><td class="addr">the-scribe</td><td>Anything spoken</td>
+        <td>A transcript, rough notes, a recording. Gives back what was decided, what was
+            promised and by whom, what was learned, and who was mentioned</td></tr>
+    <tr><td class="addr">the-researcher</td><td>The web</td>
+        <td>Research saved with its sources, dated, showing where sources disagree instead of
+            quietly picking one</td></tr>
+    <tr><td class="addr">the-curator</td><td>Housekeeping</td>
+        <td>Reconciles anything that contradicts itself and merges duplicates, working from the
+            original note instead of its own previous tidy-up</td></tr>
+  </table>
+  <p>The meeting agent in this guide is the 6th, and it is the smallest of them. It only does
+     Fathom. Those 5 take everything else.</p>
   <p>Then you get shown how it is actually run across a working week, in a room with other
      business owners setting theirs up at the same time. When yours does something you did not
      expect on a Tuesday, you put that case in front of people who have had the same one, in
