@@ -111,7 +111,7 @@ page("second brain", """
   <p>Every client, every call, every decision, every promise, every idea, in one folder of plain
      text files on your machine. Claude reads it, writes to it, and works from it.</p>
   <h3>What that actually buys you</h3>
-  <p>On the webinar I opened a person called Kim and showed the room every call I have ever had
+  <p>On the webinar I opened a person called Chaim and showed the room every call I have ever had
      with him, going back months. Not a summary. The actual record: what he said, what I said,
      what each of us agreed to do.</p>
   <p>I did not type any of it. The agent in this guide put it there.</p>
@@ -146,7 +146,7 @@ page("second brain", """
   </div>
   <hr class="rule">
   <div class="mono label">SECTION 4</div>
-  <h2>Three ways to get one</h2>
+  <h2>3 ways to get one</h2>
   <h3>Option 1 &nbsp;/&nbsp; Download mine, free</h3>
   <p>I built one and put it on the internet for nothing. It installs itself: you paste 1 line
      into Claude Code and it builds the whole structure, the agents, the templates and the
