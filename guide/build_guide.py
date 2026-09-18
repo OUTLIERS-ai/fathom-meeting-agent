@@ -46,6 +46,8 @@ CSS = """
   .foot { position:absolute; bottom:12mm; left:22mm; right:22mm; display:flex;
           justify-content:space-between; font-size:7pt; color:var(--brass); }
   .pgno { font-family:Consolas,monospace; font-size:7pt; letter-spacing:.1em; color:var(--brass); }
+  .cap { font-family:Consolas,monospace; font-size:7pt; letter-spacing:.1em;
+         text-transform:uppercase; color:var(--brass); margin:0 0 4mm 0; }
   .rule { border:none; border-top:.3mm solid var(--ink); opacity:.25; margin:5mm 0; }
   .cover { display:flex; flex-direction:column; justify-content:center; }
   .cover .word { font-size:24pt; font-weight:bold; letter-spacing:.3em; margin-top:9mm; }
@@ -78,12 +80,12 @@ page("cover", """
 page("what it is", """
   <div class="mono label">SECTION 1</div>
   <h2>What this is</h2>
-  <p class="deck">You watched it run on the webinar. This is that agent.</p>
-  <p>It opens a browser on its own, logs into Fathom, and finds every call you have not dealt
-     with yet. It pulls each transcript in and writes up what happened: what was decided, what
-     was promised and by whom, every person named, and anything left hanging.</p>
-  <p>No hands. You do nothing.</p>
-  <p>A call is forgotten in a fortnight. A filed call is searchable for years.</p>
+  <p class="deck">You watched this run on the webinar. Here it is.</p>
+  <p>It opens a browser by itself, logs into Fathom, finds the calls you have not dealt with
+     yet, and pulls each transcript in. Then it writes up what happened: what was decided, what
+     was promised and by whom, everyone who got named, and whatever was left hanging. No hands,
+     as I said on the call.</p>
+  <p>A call you had in March has gone by May unless somebody wrote it down.</p>
   <hr class="rule">
   <div class="mono label">SECTION 2</div>
   <h2>The one condition, said up front</h2>
@@ -92,77 +94,74 @@ page("what it is", """
     <p><strong>This agent does not work on its own. It writes into a second brain, and if you
        have not got one there is nowhere for it to put anything.</strong></p>
   </div>
-  <p>That is not a catch. It is what the agent is: a filer. A filer with no filing cabinet does
-     nothing at all.</p>
-  <p>A second brain is a folder of plain text files on your own computer that has everything
-     your business knows in it. Section 3 covers what that means in practice and why it is worth
-     an afternoon. Section 4 gives you 3 ways to get one, including a free one you can download
-     in about 5 minutes.</p>
-  <p>If you already keep your notes in Obsidian, or Logseq, or honestly just a folder of text
-     files, you have got one. Go to section 5 and install the agent.</p>
+  <p>I know how that reads. You came for a free agent and the first page is telling you about
+     something else you need first. Fair enough.</p>
+  <p>I am not selling you anything here. The agent is a filing clerk and that is the whole of
+     what it is, and filing needs somewhere to put the paper.</p>
+  <p>A second brain is a folder of plain text files on your own computer with everything your
+     business knows inside it. Section 3 is what that looks like in practice, and section 4
+     gives you 2 ways to get one.</p>
+  <p>If you already keep notes in Obsidian, or Logseq, or honestly just a folder of text files,
+     you have got one. Go to section 5 and install the agent.</p>
 """)
 
 # ---------------------------------------------------------------- 3. second brain (a)
 page("second brain", """
   <div class="mono label">SECTION 3</div>
   <h2>What a second brain is,<br>and why it is worth an afternoon</h2>
-  <p class="deck">The power is not in the software. It is in one place having all of it, in a
-     format that both you and an AI can read.</p>
-  <p>Every client, every call, every decision, every promise, every idea, in one folder of plain
-     text files on your machine. Claude reads it, writes to it, and works from it.</p>
+  <p class="deck">Almost none of this is about software. What makes it work is that everything
+     sits in 1 place, in a format you and an AI can both read.</p>
+  <p>Every client, every call, every decision, every promise, every idea, in 1 folder of plain
+     text files on your machine. Claude reads it and writes to it.</p>
   <h3>What that actually buys you</h3>
-  <p>On the webinar I opened a person called Chaim and showed the room every call I have ever had
-     with him, going back months. Not a summary. The actual record: what he said, what I said,
-     what each of us agreed to do.</p>
-  <p>I did not type any of it. The agent in this guide put it there.</p>
-  <p>Multiply that by every person you deal with.</p>
+  <p>On the webinar I opened a person called Chaim and showed the room every call I have ever
+     had with him, going back months. Not a summary of them either, the actual record, down to
+     what he said and what I said and what each of us agreed to do. I did not type a word of it.
+     The agent in this guide put it there while I was doing something else.</p>
+  <p>There are over 500 calls filed the same way behind him.</p>
   <h3>You stop paying for admin</h3>
-  <p>I used to pay a monthly fee for a CRM, to do data entry, into a system I had to learn
-     first. My second brain replaced it. It cost nothing to set up and nothing to run.</p>
+  <p>I used to pay a monthly fee for a CRM so that I could do data entry into a system I had
+     to learn first. Pay, every month, to do my own admin, until the second brain took it
+     over.</p>
   <h3>Nothing lives only in your head or your inbox</h3>
-  <p>The most valuable material in most businesses gets said out loud on a call and then
-     evaporates. Yours stops evaporating.</p>
+  <p>The most valuable material in most businesses gets said out loud on a call and is then
+     gone by the end of the week, and nobody notices until they need the detail of what was
+     agreed and nobody wrote it down. With the agent running, that call is in the folder the
+     same day, and you can search it 3 years later.</p>
   <h3>It gets better the longer you use it</h3>
-  <p>Month 1 it is a folder with a few notes in it. Month 12 it is what you open before every
-     call, because it knows more about your own business than you can keep in your head.</p>
+  <p>Early on it is a folder with a handful of notes in it and you will wonder why you bothered.
+     Leave it running and it becomes the first place you look before a call, because by then it
+     knows more about your own business than you can keep in your head.</p>
 """)
 
 # ---------------------------------------------------------------- 4. second brain (b)
 page("second brain", """
   <h3>You own it</h3>
-  <p>Plain text files, on your computer. No subscription. No platform that can change its
-     pricing or shut down. No export problem in 3 years. If you stop using every tool named in
-     this guide, you still have the files.</p>
-  <h3>And this is the part people miss</h3>
-  <p>An AI that knows nothing about your business gives you general answers. An AI that can read
-     200 of your own calls gives you answers about your actual clients, in your actual words.</p>
-  <p>Same model. The second brain is the whole difference.</p>
+  <p>They are plain text files sitting on your own computer. Nothing to subscribe to, and no
+     company that can put its prices up or disappear. If you stopped using every tool named in
+     this guide tomorrow, you would still have the files.</p>
+  <p>An AI that can read 200 of your own calls answers you about your actual clients, in your
+     actual words. It is the same model you are already paying for. The difference is what it
+     is allowed to read.</p>
   <div class="box">
-    <span class="mono">THE HONEST VERSION</span>
-    <p>Building one takes an afternoon. Still using it in 6 months is a different job, and it is
-       mostly about habit, not software. The most common way to fail is spending 3 weeks
-       designing a perfect structure and never putting anything in it.</p>
-    <p>Start ugly. Put a real call in it on day 1.</p>
+    <span class="mono">WHERE PEOPLE GO WRONG WITH THIS</span>
+    <p>Building one takes an afternoon. Most people who fail at it spend 3 weeks designing a
+       perfect structure and never put anything in it.</p>
+    <p>Start it ugly and put a real call in on day 1.</p>
   </div>
   <hr class="rule">
   <div class="mono label">SECTION 4</div>
-  <h2>3 ways to get one</h2>
-  <h3>Option 1 &nbsp;/&nbsp; Download mine, free</h3>
-  <p>I built one and put it on the internet for nothing. It installs itself: you paste 1 line
-     into Claude Code and it builds the whole structure, the agents, the templates and the
-     memory.</p>
-  <div class="cmd">github.com/OUTLIERS-ai/second-brain</div>
-  <p>This meeting agent is already inside it. If you take this route you can stop reading at the
-     end of this section. It is the fastest way in and it is the one I would pick.</p>
+  <h2>2 ways to get one</h2>
+  <p>Build it yourself from the addresses on the next page, which costs nothing but your time.
+     Or take mine, which is already built and already works with the agent in this guide.</p>
 """)
 
-# ---------------------------------------------------------------- 5. three ways (b)
+# ---------------------------------------------------------------- 5. build your own
 page("getting one", """
   <div class="mono label">SECTION 4, CONTINUED</div>
-  <h3>Option 2 &nbsp;/&nbsp; Build your own</h3>
-  <p>Plenty of people would rather understand it by making it. These are the starting points I
-     would actually send someone. Every address below was opened and checked on 18 September
-     2026.</p>
+  <h3>Way 1 &nbsp;/&nbsp; Build your own</h3>
+  <p>Some people would sooner understand it by making it, because you end up knowing where
+     everything is. These are the starting points I would actually send someone.</p>
   <table>
     <tr><th>Read</th><th>What it gives you</th></tr>
     <tr><td class="addr">obsidian.md</td>
@@ -189,26 +188,30 @@ page("getting one", """
     <tr><td class="addr">youtube.com/@ashleydeansmith</td>
         <td>Mine. How I use it inside a business, with the agents running on top</td></tr>
   </table>
-  <p>Start with Obsidian's own set-up page and 1 video. Not all 10.</p>
+  <p class="cap">ALL 10 ADDRESSES OPENED AND CHECKED 18 SEPTEMBER 2026</p>
+  <p>Start with Obsidian's own set-up page and 1 video. Not all 10. The afternoon goes on
+     deciding what the folders are called, and every one of those decisions is one you will
+     change twice.</p>
 """)
 
-# ---------------------------------------------------------------- 6. option 3
+# ---------------------------------------------------------------- 6. the guild version
 page("getting one", """
   <div class="mono label">SECTION 4, CONTINUED</div>
-  <h3>Option 3 &nbsp;/&nbsp; Be taught it, with other people doing the same</h3>
-  <p>The Outliers Guild is where I teach this properly. You get taught how to build it, you get
-     the agents as I make them, and you are in a room with other business owners building the
-     same system at the same time.</p>
-  <p>You are not paying for the files. The files are free and the addresses are on the page
-     before this one. You are paying to be shown how it is actually run, and for the room.</p>
-  <p>If doing it alone is not for you, that is the door.</p>
-  <hr class="rule">
-  <div class="box">
-    <span class="mono">WHICHEVER ROUTE YOU TOOK</span>
-    <p>Took option 1? The agent is already installed and you can go straight to step 4 of the
-       next section, the Fathom login.</p>
-    <p>Built your own, or already had one? Section 5 installs the agent into it.</p>
-  </div>
+  <h3>Way 2 &nbsp;/&nbsp; Take mine, already built</h3>
+  <p>The second brain I run my own business out of is not on the internet and I am not putting
+     it there. It goes to people in the Outliers Guild.</p>
+  <p>A second brain you build from the addresses on the last page is a good empty filing
+     cabinet, and you still have to work out what goes where. Mine arrives with those decisions
+     already made, after I got them wrong first in a business that was running. The agent in
+     this guide was written inside it, so the folders it files into and the way people are named
+     and linked are already there waiting for it.</p>
+  <p>The rest of the agents come with it. The one that reads books in, the one that runs the
+     weekly review, and a few others. This meeting agent is 1 of them, and it is the
+     smallest.</p>
+  <p>Then you get shown how it is actually run across a working week, in a room with other
+     business owners setting theirs up at the same time. When yours does something you did not
+     expect on a Tuesday, you put that case in front of people who have had the same one, in
+     the week you are stuck on it.</p>
 """)
 
 # ---------------------------------------------------------------- 7. install
@@ -218,7 +221,7 @@ page("install", """
   <h3>Step 1 &nbsp;/&nbsp; Get Claude Code</h3>
   <p>It is at <strong>claude.ai/code</strong>. This is an agent that Claude runs, not a program
      you double-click. It needs a Claude Pro or Max plan. There is no free route to this one,
-     and I would rather say so here than let you find out at step 4.</p>
+     and I would sooner say so here than let you find out at step 4.</p>
   <h3>Step 2 &nbsp;/&nbsp; Download the agent</h3>
   <p>Git is the tool programmers use to copy code. If you have it, run this:</p>
   <div class="cmd">git clone https://github.com/OUTLIERS-ai/fathom-meeting-agent.git</div>
@@ -233,13 +236,13 @@ page("install", """
   <div class="box">
     <span class="mono">THIS IS THE STEP EVERYONE MISSES</span>
     <p>Open the browser Playwright just installed, go to fathom.video, and log in exactly as you
-       normally would. <strong>Take as long as you need.</strong> Nothing is counting down, and
-       nothing will give up on you while you go and find your password or wait for a code. The
-       session is remembered from then on and you will not do this again.</p>
+       normally would. <strong>Take as long as you need.</strong> Nothing is counting down.
+       Nothing. Go and find your password, wait for a code, make a cup of tea. The session is
+       remembered from then on and you will not do this again.</p>
   </div>
-  <p><strong>Your agent never sees your password.</strong> It never types one, never stores one,
-     and never asks for one. If anything ever asks you to hand a password to an agent, stop,
-     because something is wrong.</p>
+  <p><strong>Your agent never sees your password.</strong> It never types one and it never
+     stores one. If anything ever asks you to hand a password to an agent, stop, because
+     something is wrong.</p>
   <h3>Step 5 &nbsp;/&nbsp; Open Claude Code inside the folder and say:</h3>
   <div class="cmd">check Fathom</div>
   <p>That is it. Afterwards any of these work: <em>any new calls?</em> &nbsp;/&nbsp;
@@ -266,18 +269,18 @@ page("what you get", """
   <hr class="rule">
   <div class="mono label">SECTION 7</div>
   <h2>What it will not do</h2>
-  <p><strong>It describes, it does not interpret.</strong> It writes what happened, not what it
-     means. No read on how the call went, no guess at whether the deal closes, no advice. You
-     read the facts in 6 months and make your own mind up.</p>
+  <p><strong>It writes what happened, not what it means.</strong> No read on how the call
+     went and no guess at whether the deal closes. You read the facts in 6 months and make your
+     own mind up.</p>
   <p><strong>It never invents to fill a gap.</strong> Transcripts are frequently wrong. Speakers
-     get mislabelled, words get mangled, whole passages garble. Where the transcript is unclear
-     it says so and quotes the mess as it found it. It will not smooth a broken passage into a
+     get mislabelled and whole passages garble. Where the transcript is unclear it says so and
+     quotes the mess as it found it. It will not smooth a broken passage into a
      clean sentence nobody said, because that is exactly how a promise nobody made ends up in
      someone's permanent record.</p>
   <p><strong>Anything commercial goes in word for word.</strong> Prices, dates, terms and
      anything resembling an agreement are quoted exactly, never put in other words.</p>
-  <p><strong>It files and links. That is all.</strong> It never replies to anyone, never sends
-     anything, and never acts on a commitment it found.</p>
+  <p><strong>It files and links. That is all.</strong> It never replies to anyone and it never
+     acts on a commitment it found.</p>
 """)
 
 # ---------------------------------------------------------------- 9. not fathom + limits
@@ -285,7 +288,7 @@ page("limits", """
   <div class="mono label">SECTION 8</div>
   <h2>If you do not use Fathom</h2>
   <p>The agent is built around 1 service on purpose. Login pages and page layouts are different
-     everywhere, and something that half-works on 5 services is worse than something that works
+     everywhere, and a tool that half-works on 5 services is worse than one that works
      properly on 1.</p>
   <p>So on Otter, Granola, tl;dv or Zoom's own recordings, the collecting half will not work.
      <strong>The filing half still does.</strong> A second agent called the Scribe comes in the
@@ -299,15 +302,15 @@ page("limits", """
      anything that sends, posts, buys or messages on your behalf. The moment automation acts
      outwardly, a mistake is public and you cannot take it back.</p>
   <p><strong>Your account, your consequences.</strong> Automating a service may be against the
-     terms you agreed to, and enforcement is usually the account rather than a warning. That is
-     your judgement to make, service by service, and the risk is yours.</p>
+     terms you agreed to, and enforcement usually means losing the account without a warning
+     first. Your judgement to make, service by service, and the risk is yours.</p>
   <p><strong>One job at a time, at human pace.</strong> Anything hammering a site quickly looks
      like exactly what it is. Slow is fine. These jobs run while you are doing something else.</p>
   <p><strong>Never point it at somebody else's account.</strong></p>
   <div class="box">
     <span class="mono">EVERYTHING IN THIS GUIDE</span>
     <p>github.com/OUTLIERS-ai/fathom-meeting-agent &nbsp;/&nbsp; the agent<br>
-       github.com/OUTLIERS-ai/second-brain &nbsp;/&nbsp; the free second brain it writes into</p>
+       Outliers Guild &nbsp;/&nbsp; the second brain it was built inside, already set up</p>
   </div>
 """)
 

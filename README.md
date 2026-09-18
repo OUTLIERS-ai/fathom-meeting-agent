@@ -116,18 +116,16 @@ and want that step automatic too, the job is the same shape pointed at a differe
 
 This repo works on its own — `Meetings/` and `People/` are here and the agent fills them.
 
-If you want the fuller version, the free Outliers Second Brain builds a complete one with this
-agent already inside it, plus the rest of the team:
-
-**github.com/OUTLIERS-ai/second-brain**
-
 Why it is worth having one at all, in plain terms: every call, client, decision and promise sits
 in one folder of plain text files on your own computer, which Claude can read and reason over. It
-remembers between conversations. Nothing lives only in your head or your inbox. You own it — no
-subscription, no platform, no export problem later.
+remembers between conversations. Nothing lives only in your head or your inbox. You own it, with
+no subscription, no platform, and no export problem later.
 
-If you would rather be taught it properly, with other people doing the same, that is the Outliers
-Guild.
+Build your own and the addresses in the guide will get you started. Or take the one Ashley runs
+his own business out of, already built, with this agent and the rest of them already in it and
+already pointed at the right folders. That one goes to people in the Outliers Guild, who also get
+shown how it is run across a working week, which is the half that never survives being written
+down.
 
 ---
 
@@ -147,4 +145,4 @@ the risk is yours.
 
 ---
 
-*Part of the Outliers Second Brain · github.com/OUTLIERS-ai/second-brain*
+*Ashley Dean Smith · Outliers*
