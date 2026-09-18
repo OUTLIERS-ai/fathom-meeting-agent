@@ -2,3 +2,5 @@ __pycache__/
 *.pyc
 .DS_Store
 .claude/settings.local.json
+guide/png/
+guide/guide.html
