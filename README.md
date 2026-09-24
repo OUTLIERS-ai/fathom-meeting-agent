@@ -46,8 +46,8 @@ About 200MB, about 5 minutes. Playwright is free and made by Microsoft.
 
 **Step 3 — log into Fathom yourself, by hand. Once.** This is the step everyone misses.
 
-Open the browser Playwright just installed, at Fathom's address, from inside the folder you
-downloaded in Step 1:
+Go into the folder you downloaded in Step 1 (it is called `fathom-meeting-agent-main` if you
+used the zip), then open the browser Playwright just installed, at Fathom's address:
 
 ```
 cd fathom-meeting-agent

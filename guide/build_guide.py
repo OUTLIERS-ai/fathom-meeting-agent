@@ -201,13 +201,8 @@ page("getting one", """
   <h3>Way 2 &nbsp;/&nbsp; Take mine, already built</h3>
   <p>The second brain I run my own business out of is not on the internet and I am not putting
      it there. It goes to people in the Outliers Guild.</p>
-  <p>A second brain you build from the addresses on the last page is a good empty filing
-     cabinet, and you still have to work out what goes where. Mine arrives with those decisions
-     already made, after I got them wrong first in a business that was running. The agent in
-     this guide was written inside it, so the folders it files into and the way people are named
-     and linked are already there waiting for it.</p>
-  <p>5 assistants come with it, and they are the reason the folder fills up without you
-     typing. Each one takes a different way in.</p>
+  <p>There are 5 assistants that come with it, and they are the reason the folder fills up
+     without you typing. Each one fills a second brain system in a different way.</p>
   <table>
     <tr><th>Assistant</th><th>What arrives</th><th>What it gives you back</th></tr>
     <tr><td class="addr">the-archivist</td><td>Documents</td>
@@ -231,9 +226,7 @@ page("getting one", """
   <p>The meeting agent in this guide is the 6th, and it is the smallest of them. It only does
      Fathom. Those 5 take everything else.</p>
   <p>Then you get shown how it is actually run across a working week, in a room with other
-     business owners setting theirs up at the same time. When yours does something you did not
-     expect on a Tuesday, you put that case in front of people who have had the same one, in
-     the week you are stuck on it.</p>
+     business owners setting theirs up at the same time.</p>
 """)
 
 # ---------------------------------------------------------------- 7. install
@@ -257,7 +250,9 @@ page("install", """
   <h3>Step 4 &nbsp;/&nbsp; Log into Fathom yourself, by hand, once</h3>
   <div class="box">
     <span class="mono">THIS IS THE STEP EVERYONE MISSES</span>
-    <p>From the folder you downloaded in Step 2, open the browser Playwright just installed:</p>
+    <p>Go into the folder you downloaded in Step 2 (it is called
+       <strong>fathom-meeting-agent-main</strong> if you used the zip), then open the browser
+       Playwright just installed:</p>
     <div class="cmd">cd fathom-meeting-agent<br>python -m playwright open --user-data-dir=.browser-profile https://fathom.video</div>
     <p>Log in exactly as you normally would. <strong>Take as long as you need.</strong> Nothing is
        counting down. Nothing. Go and find your password, wait for a code, make a cup of tea.
@@ -331,6 +326,7 @@ page("limits", """
   <p><strong>One job at a time, at human pace.</strong> Anything hammering a site quickly looks
      like exactly what it is. Slow is fine. These jobs run while you are doing something else.</p>
   <p><strong>Never point it at somebody else's account.</strong></p>
+  <p>If you need further support come join OUTLIERS Guild.</p>
   <div class="box">
     <span class="mono">EVERYTHING IN THIS GUIDE</span>
     <p>github.com/OUTLIERS-ai/fathom-meeting-agent &nbsp;/&nbsp; the agent<br>
