@@ -46,9 +46,18 @@ About 200MB, about 5 minutes. Playwright is free and made by Microsoft.
 
 **Step 3 — log into Fathom yourself, by hand. Once.** This is the step everyone misses.
 
-Open the browser Playwright just installed, go to fathom.video, and log in as you normally would.
-Take as long as you need — nothing is counting down, and nothing will give up on you while you go
-and find your password. The session is remembered in that browser profile from then on.
+Open the browser Playwright just installed, at Fathom's address, from inside the folder you
+downloaded in Step 1:
+
+```
+cd fathom-meeting-agent
+python -m playwright open --user-data-dir=.browser-profile https://fathom.video
+```
+
+Log in as you normally would. Take as long as you need — nothing is counting down, and nothing
+will give up on you while you go and find your password. Close the browser when you are in.
+The login is kept in the `.browser-profile` folder inside the download, and the agent opens the
+browser on that folder from then on.
 
 **Your agent never sees your password.** It never types one, never stores one, and never asks for
 one. If anything ever asks you to give a password to an agent, stop — something is wrong.

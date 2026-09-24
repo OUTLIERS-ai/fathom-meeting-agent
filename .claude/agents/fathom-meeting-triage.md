@@ -27,16 +27,17 @@ nothing is done twice.
 
 ## Setup, once
 
-This agent drives a real browser, because Fathom has no free API. That needs Playwright:
+This agent drives a real browser, because Fathom has no free API. That needs Playwright,
+installed with these 2 commands:
 
-```
-pip install playwright
-playwright install chromium
-```
+- `python3 -m pip install playwright` (on Windows: `python -m pip install playwright`)
+- `python3 -m playwright install chromium` (on Windows: `python -m playwright install chromium`)
 
-The owner logs into Fathom **once, by hand**, in that browser profile. You never handle their
-password and you never log in for them. If the session has expired, say so and ask them to log in
-again — do not attempt to work around it.
+The owner logs into Fathom **once, by hand**, in that browser profile: the `.browser-profile`
+folder beside `README.md`, which README Step 3 opens. Always open the browser on that folder
+(Playwright's `launch_persistent_context(".browser-profile")`); a fresh browser has no login.
+You never handle their password and you never log in for them. If the session has expired, say
+so and ask them to log in again — do not attempt to work around it.
 
 ## The run
 

@@ -22,8 +22,15 @@ one. Around 200MB, five minutes.
 
 ## Then log in yourself, once
 
-Open the browser Playwright installed, go to the service, and **log in by hand.** The session is
-remembered in that browser profile, and your agents work inside it from then on.
+Open the browser Playwright installed, from inside this folder, with the address of the service
+at the end. For Fathom, that is:
+
+```
+python -m playwright open --user-data-dir=.browser-profile https://fathom.video
+```
+
+Then **log in by hand.** The login is kept in the `.browser-profile` folder, and your agents
+open the browser on that folder from then on.
 
 **Your agent never sees your password.** It never types one, never stores one, and never asks for
 one. If you are ever prompted to give a password to an agent, something is wrong — stop.
