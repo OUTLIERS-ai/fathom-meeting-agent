@@ -202,7 +202,7 @@ page("getting one", """
   <p>The second brain I run my own business out of is not on the internet and I am not putting
      it there. It goes to people in the Outliers Guild.</p>
   <p>There are 5 assistants that come with it, and they are the reason the folder fills up
-     without you typing. Each one fills a second brain system in a different way.</p>
+     without you typing. Each one takes a second brain system in a different way.</p>
   <table>
     <tr><th>Assistant</th><th>What arrives</th><th>What it gives you back</th></tr>
     <tr><td class="addr">the-archivist</td><td>Documents</td>
