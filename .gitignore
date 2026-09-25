@@ -3,5 +3,6 @@ __pycache__/
 .DS_Store
 .claude/settings.local.json
 .browser-profile/
+.venv/
 guide/png/
 guide/guide.html

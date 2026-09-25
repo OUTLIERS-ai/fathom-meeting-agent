@@ -33,6 +33,11 @@ installed with these 2 commands:
 - `python3 -m pip install playwright` (on Windows: `python -m pip install playwright`)
 - `python3 -m playwright install chromium` (on Windows: `python -m playwright install chromium`)
 
+On a Mac, the Mac guide installs Playwright into a private Python folder, `.venv`, beside
+`README.md`, because a Mac whose `python3` is Homebrew's refuses the first line above. When that
+`.venv` folder exists, run Python as `.venv/bin/python` instead of `python3`: plain `python3`
+cannot see what was installed there.
+
 The owner logs into Fathom **once, by hand**, in that browser profile: the `.browser-profile`
 folder beside `README.md`, which README Step 3 opens. Always open the browser on that folder
 (Playwright's `launch_persistent_context(".browser-profile")`); a fresh browser has no login.
