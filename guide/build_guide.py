@@ -8,17 +8,55 @@ each page into a hidden, scrollable copy to measure true content height, because
 overflow:hidden clamps scrollHeight and makes a naive check report "fine" on every page.
 
 Writes the PDF, plus one PNG per page so the layout can be looked at rather than assumed.
+
+THE MAC VERSION (added 2026-09-25, Mac build plan V3 section 8b). 1 source, 2 guides:
+
+    python guide/build_guide.py                                    # the guide, as before
+    python guide/build_guide.py --mac --out <folder> [--run <mac-run.json>]
+
+With no switch nothing changes: same pages, same words, same files. With --mac the guide is written
+for a Mac member into <folder> (never into guide/): "The-Meeting-Agent (Mac).pdf", its HTML and a
+PNG per page. Text that differs is chosen by W(windows text, mac text). The Mac guide gets a
+"For Mac" band on the cover, a "Before you start on a Mac" page, and a last page, "What was run on
+a Mac", built from the run record of the Mac member test (without one it says the test is not yet
+recorded).
 """
+import html as H
+import json
+import os
 import pathlib
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 HERE = pathlib.Path(__file__).parent
-HTML_PATH = HERE / "guide.html"
-PDF_PATH = HERE / "The-Meeting-Agent.pdf"
-PNG_DIR = HERE / "png"
+MAC = "--mac" in sys.argv[1:]
+
+
+def _opt(name):
+    args = sys.argv[1:]
+    return args[args.index(name) + 1] if name in args and args.index(name) + 1 < len(args) else None
+
+
+if MAC:
+    if not _opt("--out"):
+        sys.exit("--mac needs --out <folder>: the Mac guide is never written into guide/")
+    OUT_DIR = pathlib.Path(_opt("--out")).resolve()
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    HTML_PATH = OUT_DIR / "guide.html"
+    PDF_PATH = OUT_DIR / "The-Meeting-Agent (Mac).pdf"
+    PNG_DIR = OUT_DIR / "png"
+    RUN = json.loads(pathlib.Path(_opt("--run")).read_text(encoding="utf-8")) if _opt("--run") else None
+else:
+    HTML_PATH = HERE / "guide.html"
+    PDF_PATH = HERE / "The-Meeting-Agent.pdf"
+    PNG_DIR = HERE / "png"
 PNG_DIR.mkdir(exist_ok=True)
+
+
+def W(win, mac):
+    """The words for this guide's system: `win` for the guide as it has always been, `mac` for --mac."""
+    return mac if MAC else win
 
 CSS = """
   @page { size: A4; margin: 0; }
@@ -61,10 +99,22 @@ CSS = """
            white-space:nowrap; }
 """
 
+MAC_CSS = """
+  .band { display:inline-block; margin-top:8mm; padding:1.6mm 6mm; background:var(--ink); color:var(--paper);
+          font-family:Consolas,monospace; font-size:10pt; letter-spacing:.3em; }
+  .c { font-family:Consolas,monospace; font-size:7.6pt; white-space:nowrap; margin:0; }
+  .r { font-size:9pt; color:var(--ox); margin:0 0 1.6mm 0; }
+  .macrun p { font-size:9.6pt; line-height:1.42; margin-bottom:2.2mm; }
+  .macrun .box p { margin-bottom:1.5mm; }
+"""
+
 PAGES = []
 
 
-def page(label, body, no_foot=False, cls=""):
+def page(label, body, no_foot=False, cls="", only=None):
+    """only: "mac" for a page that exists only in the Mac guide."""
+    if only == "mac" and not MAC:
+        return
     PAGES.append({"label": label, "body": body, "no_foot": no_foot, "cls": cls})
 
 
@@ -75,7 +125,7 @@ page("cover", """
   <div class="sub">It logs into Fathom, files every call you have, and writes down
     what was decided and what was promised.<br>You do nothing.</div>
   <div class="word mono">ASHLEY DEAN SMITH</div>
-""", no_foot=True, cls="cover")
+""" + W("", '  <div><span class="band">FOR MAC</span></div>\n'), no_foot=True, cls="cover")
 
 # ---------------------------------------------------------------- 2. what this is
 page("what it is", """
@@ -229,8 +279,9 @@ page("getting one", """
      business owners setting theirs up at the same time.</p>
 """)
 
-# ---------------------------------------------------------------- 7. install
-page("install", """
+if not MAC:
+    # ------------------------------------------------------------ 7. install (the guide as it has always been)
+    page("install", """
   <div class="mono label">SECTION 5</div>
   <h2>Installing the agent</h2>
   <h3>Step 1 &nbsp;/&nbsp; Get Claude Code</h3>
@@ -267,6 +318,79 @@ page("install", """
   <p>That is it. Afterwards any of these work: <em>any new calls?</em> &nbsp;/&nbsp;
      <em>process my meetings</em> &nbsp;/&nbsp; <em>triage my recordings</em>.</p>
 """)
+else:
+    # ---------------------------------------------------------------- 7. install
+    # (on a Mac: a "Before you start on a Mac" page first, then the install steps over 2 pages)
+    page("before you start", """
+      <div class="mono label">SECTION 5</div>
+      <h2>Before you start on a Mac</h2>
+      <p><strong>Python.</strong> Install Python from https://www.python.org/downloads/macos/ (the link
+         labelled "macOS installer"; we tested 3.14.7). When it finishes, double-click
+         <strong>Install Certificates.command</strong> and <strong>Update Shell Profile.command</strong> in
+         the Python folder inside Applications, then open a new Terminal window. Check with:</p>
+      <p class="c">python3 -c "import sys; print(sys.prefix)"</p>
+      <p>It should print a line starting <strong>/Library/Frameworks/Python.framework</strong>. If it starts
+         <strong>/opt/homebrew</strong> or <strong>/usr/local/Cellar</strong>, your Terminal uses Homebrew's
+         Python (Homebrew is an add-on installer many Mac owners use). Every command here still works.
+         The browser the agent drives is installed into a private Python folder: a folder with its own
+         copy of Python's add-ons, which works with python.org's Python and with Homebrew's.</p>
+      <p><strong>The first time you type git.</strong> Your Mac may show a box asking to install the
+         command line developer tools. Press Install, wait until it has finished, then type the git line
+         again.</p>
+      <p><strong>If Terminal says claude is not found,</strong> type the line below. It adds the folder
+         Claude Code is installed in to the list of folders Terminal looks in for programs. Then open a
+         new Terminal window and check with <strong>claude --version</strong>.</p>
+      <p class="c">echo 'export PATH="$HOME/.local/bin:$PATH"' &gt;&gt; ~/.zshrc</p>
+      <p><strong>Apple Silicon or Intel</strong> (the 2 kinds of chip a Mac can have; the Apple menu, then
+         About This Mac, shows yours): the steps are the same on both, and both were tested.</p>
+      <p><strong>Tried only on test Macs.</strong> Every step above was tried only on test Macs (Macs
+         GitHub rents out by the minute to run scripts, not a person's own Mac), never on a real Mac. 1 of
+         them cannot happen on a test Mac, so it was not tried at all: the developer-tools box.</p>
+    """, only="mac")
+
+    page("install", """
+      <div class="mono label">SECTION 5, CONTINUED</div>
+      <h2>Installing the agent</h2>
+      <h3>Step 1 &nbsp;/&nbsp; Get Claude Code</h3>
+      <p>It is at <strong>claude.ai/code</strong>. This is an agent that Claude runs, not a program
+         you double-click. It needs a Claude Pro or Max plan. There is no free route to this one,
+         and I would sooner say so here than let you find out at step 4.</p>
+      <h3>Step 2 &nbsp;/&nbsp; Download the agent</h3>
+      <p>Git is the tool programmers use to copy code. Open Terminal and run this:</p>
+      <div class="cmd">git clone https://github.com/OUTLIERS-ai/fathom-meeting-agent-mac.git</div>
+      <p>If you have not got git, open that same address without the <strong>.git</strong> on the
+         end, press the green Code button, and download the zip instead.</p>
+      <h3>Step 3 &nbsp;/&nbsp; Install the browser</h3>
+      <p>The agent reads Fathom the way you do, through a real browser, because Fathom has no free
+         way in for software. Go into the folder you downloaded in Step 2 (it is called
+         <strong>fathom-meeting-agent-mac-main</strong> if you used the zip), make a private Python folder
+         called <strong>.venv</strong> in it, and install the browser into that folder:</p>
+      <div class="cmd">cd fathom-meeting-agent-mac<br>python3 -m venv .venv<br>source .venv/bin/activate &amp;&amp; python -m pip install playwright<br>source .venv/bin/activate &amp;&amp; python -m playwright install chromium</div>
+      <p>About 200MB, about 5 minutes. Playwright is free and made by Microsoft. The agent knows to
+         look for it in <strong>.venv</strong>.</p>
+    """)
+
+    page("install", """
+      <div class="mono label">SECTION 5, CONTINUED</div>
+      <h3>Step 4 &nbsp;/&nbsp; Log into Fathom yourself, by hand, once</h3>
+      <div class="box">
+        <span class="mono">THIS IS THE STEP EVERYONE MISSES</span>
+        <p>In the same Terminal window, still in that folder, open the browser Playwright just
+           installed:</p>
+        <div class="cmd">source .venv/bin/activate &amp;&amp; python -m playwright open --user-data-dir=.browser-profile https://fathom.video</div>
+        <p>Log in exactly as you normally would. <strong>Take as long as you need.</strong> Nothing is
+           counting down. Nothing. Go and find your password, wait for a code, make a cup of tea.
+           Then close the browser. The login stays in the <strong>.browser-profile</strong> folder
+           and you will not do this again.</p>
+      </div>
+      <p><strong>Your agent never sees your password.</strong> It never types one and it never
+         stores one. If anything ever asks you to hand a password to an agent, stop, because
+         something is wrong.</p>
+      <h3>Step 5 &nbsp;/&nbsp; Open Claude Code inside the folder and say:</h3>
+      <div class="cmd">check Fathom</div>
+      <p>That is it. Afterwards any of these work: <em>any new calls?</em> &nbsp;/&nbsp;
+         <em>process my meetings</em> &nbsp;/&nbsp; <em>triage my recordings</em>.</p>
+    """)
 
 # ---------------------------------------------------------------- 8. what you get
 page("what you get", """
@@ -329,15 +453,62 @@ page("limits", """
   <p>If you need further support come join OUTLIERS Guild.</p>
   <div class="box">
     <span class="mono">EVERYTHING IN THIS GUIDE</span>
-    <p>github.com/OUTLIERS-ai/fathom-meeting-agent &nbsp;/&nbsp; the agent<br>
+    <p>""" + W("github.com/OUTLIERS-ai/fathom-meeting-agent", "github.com/OUTLIERS-ai/fathom-meeting-agent-mac") + """ &nbsp;/&nbsp; the agent<br>
        Outliers Guild &nbsp;/&nbsp; the second brain it was built inside, already set up</p>
   </div>
 """)
 
 
+# ---------------------------------------------------------------- Mac only: what was run on a Mac
+NOT_YET = "Mac test for this version not yet recorded."
+TEST_MAC = ("A <strong>test Mac</strong>, here, is one of the Macs GitHub rents out by the minute to run a script: "
+            "not a Mac a person uses, and not yours.")
+
+
+def _code(s):
+    return '<p class="c">%s</p>' % H.escape(s)
+
+
+def _inline(s):
+    """`code` in a record's sentence is set in the command font; everything else is escaped."""
+    parts = s.split("`")
+    return "".join(H.escape(x) if i % 2 == 0 else '<span style="font-family:Consolas,monospace">%s</span>'
+                   % H.escape(x) for i, x in enumerate(parts))
+
+
+def mac_run_page(run):
+    head = ('<div class="mono label">THE MAC TEST</div><h2>What was run on a Mac</h2>'
+            '<p>%s</p>' % TEST_MAC)
+    limits = ('<div class="box"><span class="mono">NOT TESTED ON A REAL MAC</span>'
+              "<p>The Fathom login. Step 4 opens a browser for you to log into Fathom by hand, which a script "
+              "cannot do, so the agent never collected a call on a test Mac. The same line with a blank page in "
+              "place of Fathom's address was run, and the browser opened.</p>"
+              "<p>The first time you type git, your Mac may ask to install the command line developer tools. "
+              "GitHub's test Macs already have them, so that box never appeared and was not tried.</p></div>")
+    if not run:
+        return '<div class="macrun">%s<p>%s</p>%s</div>' % (head, NOT_YET, limits)
+    intro = ("<p>On %s a script downloaded this agent afresh on 7 test Macs and ran each line this guide "
+             "prints that a test Mac can run, in the guide's order, exactly as printed; the line it could not run "
+             "is marked below. After a <span style=\"font-family:Consolas,monospace\">cd</span> line, the lines "
+             "that follow ran in that folder, as they do for you. The lines were run by the script, not typed by "
+             "a person. <strong>check Fathom</strong> and the agent itself need Claude Code and your own login, so "
+             "they were not run.</p>" % H.escape(run["date"]))
+    macs = "<p>%s</p>" % _inline(run["macs"])
+    rows = "".join('%s<p class="r">%s</p>' % (_code(s["command"]), _inline(s["status"])) for s in run["steps"])
+    notes = "".join("<p>%s</p>" % _inline(n) for n in run.get("notes", []))
+    link = ("<p>The script's record of the run is public, for anyone who wants to check it; you do not need to "
+            "open it: %s</p>" % H.escape(run["run_url"]))
+    return ('<div class="macrun">%s%s%s<h3>Each line, then what happened to it</h3>%s%s%s%s</div>'
+            % (head, intro, macs, rows, notes, link, limits))
+
+
+if MAC:
+    page("what was run", mac_run_page(RUN))
+
+
 def build_html():
     out = ["<!doctype html><html><head><meta charset='utf-8'>",
-           "<title>The Meeting Agent</title><style>%s</style></head><body>" % CSS]
+           "<title>The Meeting Agent</title><style>%s</style></head><body>" % (CSS + (MAC_CSS if MAC else ""))]
     total = len(PAGES)
     for i, p in enumerate(PAGES):
         foot = ""
@@ -347,7 +518,9 @@ def build_html():
         out.append('<div class="page %s" data-label="%s">%s%s</div>'
                    % (p["cls"], p["label"], p["body"], foot))
     out.append("</body></html>")
-    HTML_PATH.write_text("\n".join(out), encoding="utf-8")
+    tmp = HTML_PATH.with_name(HTML_PATH.name + ".tmp")
+    tmp.write_text("\n".join(out), encoding="utf-8")
+    os.replace(tmp, HTML_PATH)
 
 
 def render():
@@ -386,9 +559,11 @@ def render():
         for i, el in enumerate(page_.query_selector_all(".page")):
             el.screenshot(path=str(PNG_DIR / ("page-%02d.png" % (i + 1))))
 
-        page_.pdf(path=str(PDF_PATH), format="A4", print_background=True,
+        tmp = PDF_PATH.with_name(PDF_PATH.name + ".tmp")
+        page_.pdf(path=str(tmp), format="A4", print_background=True,
                   margin={"top": "0", "bottom": "0", "left": "0", "right": "0"})
         browser.close()
+    os.replace(tmp, PDF_PATH)
 
     print("\nPDF   %s" % PDF_PATH)
     print("PNGs  %s" % PNG_DIR)
